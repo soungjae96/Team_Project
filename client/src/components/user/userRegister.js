@@ -15,9 +15,9 @@ const UserRegister = () => {
   const [userGender, setuserGender] = useState("");
   const [userBloodGroup, setuserBloodGroup] = useState("");
 
-  const submituserRegister = () => {
-    const regurl = "http://3.35.156.25:3001/reg/usr";
-    Axios.post(regurl, {
+const submituserRegister = async () => {
+  try {
+    const response = await Axios.post("https://cic6163ew5.execute-api.ap-northeast-2.amazonaws.com/test/reg/usr", {
       userFName: userFName,
       userAge: userAge,
       userGender: userGender,
@@ -27,10 +27,13 @@ const UserRegister = () => {
       userPlace: userPlace,
       userUserName: userUserName,
       userPassword: userPassword,
-    }).then((response) => {
-      alert(response.data.message);
     });
-  };
+    alert(response.data.message);
+  } catch (error) {
+    console.error("사용자 등록 실패:", error);
+    alert("사용자 등록 중 오류가 발생했습니다.");
+  }
+};
 
   return (
     <div className="user-register">

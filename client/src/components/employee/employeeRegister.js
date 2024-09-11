@@ -11,21 +11,22 @@ const EmployeeRegister = () => {
   const [empPhone, setempPhone] = useState("");
   const [empAddress, setempAddress] = useState("");
 
-  const submitEmployeeRegister = () => {
-    //post-url
-    const regurl = "http://localhost:3001/reg/emp";
-    //post-req
-    Axios.post(regurl, {
+const submitEmployeeRegister = async () => {
+  try {
+    const response = await Axios.post("https://cic6163ew5.execute-api.ap-northeast-2.amazonaws.com/test/reg/emp", {
       empName: empName,
       empMail: empMail,
       empPhone: empPhone,
       empAddress: empAddress,
       empUserName: empUserName,
       empPassword: empPassword,
-    }).then((response) => {
-      alert(response.data.message);
     });
-  };
+    alert(response.data.message);
+  } catch (error) {
+    console.error("직원 등록 실패:", error);
+    alert("직원 등록 중 오류가 발생했습니다.");
+  }
+};
 
   return (
     <div className="emp-register">

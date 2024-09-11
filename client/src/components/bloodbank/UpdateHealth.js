@@ -12,25 +12,40 @@ const UpdateHealth = () => {
   const [userStatus, setuserStatus] = useState("");
 
   //search for blood
-  useEffect(() => {
-    Axios.post("http://3.35.156.25:3001/login/emp/uh", {
-      userId: userId,
-    }).then((response) => {
+const fetchUserData = async (userId) => {
+    try {
+      const response = await Axios.post("https://cic6163ew5.execute-api.ap-northeast-2.amazonaws.com/test/login/emp/uh", {
+        userId: userId,
+      });
       setsearchList(response.data);
-    });
-  });
+    } catch (error) {
+      console.error("사용자 정보 조회 실패:", error);
+      // 사용자에게 오류 알림 처리
+    }
+  };
 
-  //updateData
-  const updateUserData = (userId) => {
-    Axios.put("http://3.35.156.25:3001/login/emp/uh", {
-      user_id: userId,
-      userVitals: userVitals,
-      userHeight: userHeight,
-      userWeight: userWeight,
-      userStatus: userStatus,
-    }).then((response) => {
-      alert(response.data.message);
-    });
+  useEffect(() => {
+    // userId가 변경되면 데이터 fetch
+    if (userId) {
+      fetchUserData(userId);
+    }
+  }, [userId]); // useEffect 의존 관계: userId
+
+  // update user data
+  const updateUserData = async (userId) => {
+    try {
+      await Axios.put("https://cic6163ew5.execute-api.ap-northeast-2.amazonaws.com/test/login/emp/uh", {
+        user_id: userId,
+        userVitals: userVitals,
+        userHeight: userHeight,
+        userWeight: userWeight,
+        userStatus: userStatus,
+      });
+      // 업데이트 성공 알림 처리 (선택적)
+    } catch (error) {
+      console.error("사용자 정보 업데이트 실패:", error);
+      // 사용자에게 오류 알림 처리
+    }
   };
 
   //returning

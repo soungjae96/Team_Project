@@ -8,19 +8,23 @@ const EmployeeLogin = () => {
   const [empPassword, setempPassword] = useState("");
 
   //onclick function
-  const empLoginCheck = () => {
-    Axios.post("http://localhost:3001/login/emp", {
+const empLoginCheck = async () => {
+  try {
+    const response = await Axios.post("https://cic6163ew5.execute-api.ap-northeast-2.amazonaws.com/test/login/emp", {
       empUserName: empUserName,
       empPassword: empPassword,
-    }).then((response) => {
-      if (response.data.message) {
-        alert(response.data.message);
-      } else {
-        alert("WELCOME!");
-        window.location = "/login/emp/dash";
-      }
     });
-  };
+    if (response.data.message) {
+      alert(response.data.message);
+    } else {
+      alert("WELCOME!");
+      window.location = "/login/emp/dash";
+    }
+  } catch (error) {
+    console.error("직원 로그인 실패:", error);
+    alert("로그인 중 오류가 발생했습니다.");
+  }
+};
 
   return (
     <div className="emp-login">

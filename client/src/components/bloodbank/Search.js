@@ -11,18 +11,22 @@ const Search = () => {
   const [searchList, setsearchList] = useState([]);
 
   //search for blood
-  useEffect(() => {
-    Axios.post("http://3.35.156.25:3001/home/search", {
-      place: place,
-      blood: blood,
-    }).then((response) => {
-      if (response.data.message) {
-        //alert(response.data.message);
-      } else {
-        setsearchList(response.data);
-      }
-    });
-  },[blood, place]);
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await Axios.post("https://cic6163ew5.execute-api.ap-northeast-2.amazonaws.com/test/home/search", {
+        place: place,
+        blood: blood,
+      });
+      setsearchList(response.data);
+    } catch (error) {
+      console.error("검색 실패:", error);
+      alert("검색 중 오류가 발생했습니다.");
+    }
+  };
+
+  fetchData();
+}, [blood, place]);
 
   //returning
   return (

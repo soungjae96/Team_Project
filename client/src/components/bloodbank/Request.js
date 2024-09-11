@@ -11,7 +11,7 @@ const Request = () => {
 
   //useEffect call
   useEffect(() => {
-    Axios.get("http://3.35.156.25:3001/home").then((response) => {
+    Axios.get("https://cic6163ew5.execute-api.ap-northeast-2.amazonaws.com/test/home").then((response) => {
       //console.log(response.data);
       setbloodTable(response.data);
     });

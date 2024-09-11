@@ -64,12 +64,12 @@ export default class RequestClass extends Component {
   };
 
   request = () => {
-    Axios.post("http://3.35.156.25:3001/request", {
+    Axios.post("https://cic6163ew5.execute-api.ap-northeast-2.amazonaws.com/test/request", {
       blood_group: this.state.req_blood,
       unit: this.state.req_unit,
     }).then((response)=>{
         if(response.data.message){
-            alert(response.data.message)
+            alert(response.data.message);
         }
     });
   };

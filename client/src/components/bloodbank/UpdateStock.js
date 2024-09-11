@@ -12,19 +12,31 @@ const UpdateStock = () => {
 
   //useEffect call
   useEffect(() => {
-    Axios.get("http://3.35.156.25:3001/login/emp/ub", (req, res) => {}).then(
-      (response) => {
-        //console.log(response.data);
+    const fetchData = async () => {
+      try {
+        const response = await Axios.get("https://cic6163ew5.execute-api.ap-northeast-2.amazonaws.com/test/login/emp/ub");
         setbloodTable(response.data);
+      } catch (error) {
+        console.error("데이터 가져오기 실패:", error);
+        // 사용자에게 오류 알림 처리
       }
-    );
-  });
-  //updateBloodStock
-  const ubStock = (b_id) => {
-    Axios.put("http://3.35.156.25:3001/login/emp/ub/update", {
-      b_id: b_id,
-      unitUpdate: unitUpdate,
-    }).then(setunitUpdate(""));
+    };
+
+    fetchData();
+  }, []); // useEffect 의존 관계 배열 비우기 (데이터는 처음 로딩 시 한 번만)
+
+  // updateBloodStock function
+  const ubStock = async (b_id) => {
+    try {
+      await Axios.put("https://cic6163ew5.execute-api.ap-northeast-2.amazonaws.com/test/login/emp/ub/update", {
+        b_id: b_id,
+        unitUpdate: unitUpdate,
+      });
+      setunitUpdate(0); // 업데이트 후 unitUpdate 초기화
+    } catch (error) {
+      console.error("재고 업데이트 실패:", error);
+      // 사용자에게 오류 알림 처리
+    }
   };
   return (
     <div className="dashboard">
