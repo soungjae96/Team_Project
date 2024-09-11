@@ -14,11 +14,12 @@ const Dashboard = () => {
 
   //useEffect call
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/home")
-      .then(function (response) {
-        //console.log(response);
-        setbloodTable(response.data)
+    axios.get('https://cic6163ew5.execute-api.ap-northeast-2.amazonaws.com/test/home')
+      .then(response => {
+        setbloodTable(response.data);
+      })
+      .catch(error => {
+        console.error('데이터 가져오기 실패:', error);
       });
   }, []);
 

@@ -9,7 +9,7 @@ const UserLogin = () => {
   const [userPassword, setuserPassword] = useState("");
 
   const userLoginCheck = () => {
-    Axios.post("http://localhost:3001/login/usr", {
+    Axios.post("http://3.35.156.25:3001/login/usr", {
       userUserName: userUserName,
       userPassword: userPassword,
     }).then((response) => {

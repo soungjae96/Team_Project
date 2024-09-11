@@ -30,7 +30,7 @@ export default class SearhClass extends Component {
 
   render() {
     const searchBlood = () => {
-      Axios.post("http://localhost:3001/home/search", {
+      Axios.post("http://3.35.156.25:3001/home/search", {
         place: this.state.place,
         blood: this.state.blood,
       }).then((response) => {

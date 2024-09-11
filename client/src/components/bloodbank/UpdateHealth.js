@@ -13,7 +13,7 @@ const UpdateHealth = () => {
 
   //search for blood
   useEffect(() => {
-    Axios.post("http://localhost:3001/login/emp/uh", {
+    Axios.post("http://3.35.156.25:3001/login/emp/uh", {
       userId: userId,
     }).then((response) => {
       setsearchList(response.data);
@@ -22,7 +22,7 @@ const UpdateHealth = () => {
 
   //updateData
   const updateUserData = (userId) => {
-    Axios.put("http://localhost:3001/login/emp/uh", {
+    Axios.put("http://3.35.156.25:3001/login/emp/uh", {
       user_id: userId,
       userVitals: userVitals,
       userHeight: userHeight,
