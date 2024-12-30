@@ -82,8 +82,3 @@ See `contributing.md` for ways to get started.
 
 Please adhere to this project's `code of conduct`.
 
-
-<br/>
-<br/>
-<a href="https://www.buymeacoffee.com/lonebots"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=lonebots&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" /></a>
-</p>
